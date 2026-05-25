@@ -35,7 +35,7 @@ go.work.sum
 immigration-mcp-server
 
 # GCP credentials
-*.json
+settings.json
 
 # OS
 .DS_Store
