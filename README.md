@@ -20,9 +20,8 @@ Navigating US immigration is complex and expensive. immigration-mcp gives AI age
 | Tool | Description |
 |------|-------------|
 | `get_visa_bulletin` | Fetch the latest US Visa Bulletin with employment-based priority dates by country and category |
-| `check_priority_date` | Check if your priority date is current for I-485 filing *(coming soon)* |
-| `get_uscis_news` | Fetch latest USCIS policy announcements and news *(coming soon)* |
-| `explain_term` | Plain English explanation of any immigration term *(coming soon)* |
+| `check_priority_date` | Check if your priority date is current for I-485 filing |
+| `explain_term` | Plain English explanation of any immigration term |
 
 ## Example Prompts
 
