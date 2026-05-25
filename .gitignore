@@ -30,3 +30,12 @@ go.work.sum
 # Editor/IDE
 # .idea/
 # .vscode/
+
+# Binaries
+immigration-mcp-server
+
+# GCP credentials
+*.json
+
+# OS
+.DS_Store
