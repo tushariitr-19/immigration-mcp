@@ -57,3 +57,31 @@ func IsEmploymentBasedTable(table [][]string) bool {
 	}
 	return false
 }
+
+func NormalizeInputCountry(country string) string {
+	switch strings.ToLower(country) {
+	case "india":
+		return "India"
+	case "china":
+		return "China"
+	case "mexico":
+		return "Mexico"
+	case "philippines":
+		return "Philippines"
+	default:
+		return "Worldwide"
+	}
+}
+
+func NormalizeCategory(category string) string {
+	switch strings.ToLower(category) {
+	case "eb1":
+		return "EB1"
+	case "eb2":
+		return "EB2"
+	case "eb3":
+		return "EB3"
+	default:
+		return category
+	}
+}

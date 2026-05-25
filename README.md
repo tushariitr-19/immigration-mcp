@@ -100,7 +100,17 @@ Each tool is self-contained — the server is agnostic of what tools do internal
 ## Running Tests
 
 ```bash
-go test ./tests/... -v
+# Unit tests only
+make test-unit
+
+# Integration tests only
+make test-integration
+
+# All tests
+make test
+
+# Build binary
+make build
 ```
 
 ## Contributing

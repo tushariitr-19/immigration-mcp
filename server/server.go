@@ -23,6 +23,7 @@ func New() *Server {
 	}, nil)
 
 	mcp.AddTool(s, tools.GetVisaBulletinTool, tools.GetVisaBulletinHandler())
+	mcp.AddTool(s, tools.CheckPriorityDateTool, tools.CheckPriorityDateHandler())
 
 	logger.Log.Info("registered tools", zap.String("version", version))
 

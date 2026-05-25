@@ -45,4 +45,20 @@ func main() {
 	for _, c := range res.Content {
 		log.Print(c.(*mcp.TextContent).Text)
 	}
+
+	// Test check_priority_date
+	res2, err := session.CallTool(ctx, &mcp.CallToolParams{
+		Name: "check_priority_date",
+		Arguments: map[string]any{
+			"country":       "India",
+			"category":      "EB2",
+			"priority_date": "2015-03-10",
+		},
+	})
+	if err != nil {
+		log.Fatalf("check_priority_date failed: %v", err)
+	}
+	for _, c := range res2.Content {
+		log.Print(c.(*mcp.TextContent).Text)
+	}
 }
