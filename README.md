@@ -79,9 +79,8 @@ immigration-mcp/
 ├── server/server.go          ← MCP server setup, tool registration
 ├── tools/
 │   ├── visa_bulletin.go      ← get_visa_bulletin tool
-│   ├── priority_date.go      ← check_priority_date tool (coming soon)
-│   ├── uscis_news.go         ← get_uscis_news tool (coming soon)
-│   └── explain_term.go       ← explain_term tool (coming soon)
+│   ├── priority_date.go      ← check_priority_date tool
+│   └── explain_term.go       ← explain_term tool
 ├── util/
 │   ├── util.go               ← shared helper functions
 │   └── constants.go          ← shared constants
