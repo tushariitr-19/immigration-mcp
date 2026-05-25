@@ -15,6 +15,13 @@ test-integration: build
 # Run all tests
 test: test-unit test-integration
 
-# Clean built binaries
+# Run test client manually
+test-client: build
+	go run ./cmd/testclient/
+
+	# Clean built binaries
 clean:
 	rm -f immigration-mcp-server
+
+# Build and run tests in one shot
+ci: test-unit test-integration

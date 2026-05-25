@@ -61,4 +61,16 @@ func main() {
 	for _, c := range res2.Content {
 		log.Print(c.(*mcp.TextContent).Text)
 	}
+
+	// Test explain_term
+	res3, err := session.CallTool(ctx, &mcp.CallToolParams{
+		Name:      "explain_term",
+		Arguments: map[string]any{"term": "priority date"},
+	})
+	if err != nil {
+		log.Fatalf("explain_term failed: %v", err)
+	}
+	for _, c := range res3.Content {
+		log.Print(c.(*mcp.TextContent).Text)
+	}
 }

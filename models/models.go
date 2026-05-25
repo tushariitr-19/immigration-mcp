@@ -41,4 +41,10 @@ type ImmigrationTerm struct {
 	Detail       string   `json:"detail"`
 	RelatedTerms []string `json:"related_terms"`
 	Forms        []string `json:"applicable_forms,omitempty"`
+	Source       string   `json:"source,omitempty"`
+}
+
+type ImmigrationTermResult struct {
+	Term      ImmigrationTerm `json:"term"`
+	MatchType string          `json:"match_type"`
 }

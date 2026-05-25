@@ -237,3 +237,103 @@ func TestCheckPriorityDateCaseInsensitiveIntegration(t *testing.T) {
 		t.Errorf("expected category EB2 got %s", result.Category)
 	}
 }
+
+// explain_term tests
+
+func TestExplainTermExactMatchIntegration(t *testing.T) {
+	session, cleanup := newSession(t)
+	defer cleanup()
+
+	res, err := session.CallTool(context.Background(), &mcp.CallToolParams{
+		Name:      "explain_term",
+		Arguments: map[string]any{"term": "priority date"},
+	})
+	if err != nil || res.IsError {
+		t.Fatalf("explain_term failed: %v", err)
+	}
+
+	var result models.ImmigrationTerm
+	if err := json.Unmarshal([]byte(res.Content[0].(*mcp.TextContent).Text), &result); err != nil {
+		t.Fatalf("failed to parse response: %v", err)
+	}
+
+	if result.Term != "Priority Date" {
+		t.Errorf("expected Priority Date got %s", result.Term)
+	}
+	if result.Simple == "" {
+		t.Error("expected simple explanation to be non-empty")
+	}
+	t.Logf("term: %s simple: %s", result.Term, result.Simple)
+}
+
+func TestExplainTermFuzzyMatchIntegration(t *testing.T) {
+	session, cleanup := newSession(t)
+	defer cleanup()
+
+	// fuzzy match — "what is h1b visa" should match "h1b"
+	res, err := session.CallTool(context.Background(), &mcp.CallToolParams{
+		Name:      "explain_term",
+		Arguments: map[string]any{"term": "what is h1b visa"},
+	})
+	if err != nil || res.IsError {
+		t.Fatalf("explain_term failed: %v", err)
+	}
+
+	var result models.ImmigrationTerm
+	if err := json.Unmarshal([]byte(res.Content[0].(*mcp.TextContent).Text), &result); err != nil {
+		t.Fatalf("failed to parse response: %v", err)
+	}
+
+	if result.Term == "" {
+		t.Error("expected a result for fuzzy match")
+	}
+	t.Logf("term: %s simple: %s", result.Term, result.Simple)
+}
+
+func TestExplainTermNotFoundIntegration(t *testing.T) {
+	session, cleanup := newSession(t)
+	defer cleanup()
+
+	res, err := session.CallTool(context.Background(), &mcp.CallToolParams{
+		Name:      "explain_term",
+		Arguments: map[string]any{"term": "nonexistent term xyz"},
+	})
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+
+	// Should return an error result not a panic
+	if !res.IsError {
+		t.Error("expected IsError to be true for unknown term")
+	}
+	t.Logf("error response received as expected")
+}
+
+func TestExplainTermCaseInsensitiveIntegration(t *testing.T) {
+	session, cleanup := newSession(t)
+	defer cleanup()
+
+	tests := []string{"PRIORITY DATE", "Priority Date", "priority date", "H1B", "h1b"}
+
+	for _, term := range tests {
+		t.Run(term, func(t *testing.T) {
+			res, err := session.CallTool(context.Background(), &mcp.CallToolParams{
+				Name:      "explain_term",
+				Arguments: map[string]any{"term": term},
+			})
+			if err != nil || res.IsError {
+				t.Fatalf("explain_term failed for %s: %v", term, err)
+			}
+
+			var result models.ImmigrationTerm
+			if err := json.Unmarshal([]byte(res.Content[0].(*mcp.TextContent).Text), &result); err != nil {
+				t.Fatalf("failed to parse response: %v", err)
+			}
+
+			if result.Term == "" {
+				t.Errorf("expected result for term %s", term)
+			}
+			t.Logf("term: %s → %s", term, result.Term)
+		})
+	}
+}
