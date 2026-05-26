@@ -1,4 +1,5 @@
 # immigration-mcp
+[![tushariitr-19/immigration-mcp MCP server](https://glama.ai/mcp/servers/tushariitr-19/immigration-mcp/badges/score.svg)](https://glama.ai/mcp/servers/tushariitr-19/immigration-mcp)
 
 ⚠️ **Disclaimer:** This tool is for informational purposes only and does not constitute legal advice. Always consult a qualified immigration attorney for decisions about your specific case. Data is sourced from official government websites (USCIS, State Department) but may not reflect the most recent updates.
 
