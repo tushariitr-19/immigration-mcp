@@ -72,6 +72,14 @@ Optional:
 export DEBUG=true   # enables debug logging
 ```
 
+## Screenshots
+
+### Available Tools
+![Available Tools](docs/screenshots/list_of_tools.png)
+
+### explain_term in action
+![Explain Term](docs/screenshots/explain_term.png)
+
 ## Architecture
 
 ```
