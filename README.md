@@ -1,4 +1,7 @@
 # immigration-mcp
+
+[![Go Version](https://img.shields.io/badge/Go-1.25+-00ADD8?style=flat&logo=go)](https://golang.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![tushariitr-19/immigration-mcp MCP server](https://glama.ai/mcp/servers/tushariitr-19/immigration-mcp/badges/score.svg)](https://glama.ai/mcp/servers/tushariitr-19/immigration-mcp)
 
 ⚠️ **Disclaimer:** This tool is for informational purposes only and does not constitute legal advice. Always consult a qualified immigration attorney for decisions about your specific case. Data is sourced from official government websites (USCIS, State Department) but may not reflect the most recent updates.
